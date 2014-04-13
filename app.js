@@ -5,10 +5,9 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var passport = require('passport');
 var mongoose = require('mongoose');
-var LocalStrategy = require('passport-local').Strategy;
-
+var passport = require('passport');
+var config = require('./config/config');
 var app = express();
 
 // all environments
@@ -37,16 +36,11 @@ app.configure('production', function() {
     app.use(express.errorHandler());
 });
 
-//passport configure
-var User = require('./models/user');
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
+require('./config/passport')(passport, config);
 require('./routes/routes')(app, passport);
 
 // mongoose
-mongoose.connect('mongodb://localhost:27017/passport_local_mongoose', function(err) {
+mongoose.connect(config.development.db, function(err) {
     if (err) throw err;
     console.log('Successfully connect to mongodb');
 });
