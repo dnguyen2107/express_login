@@ -31,7 +31,7 @@ exports.authorize = function(req, res) {
         }
 
         passport.authenticate('local')(req, res, function() {
-            res.redirect('/dashboard');
+            res.redirect('/home');
         });
     });
 };
