@@ -19,6 +19,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(express.multipart());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
@@ -41,7 +42,9 @@ require('./routes/routes')(app, passport);
 
 // mongoose
 mongoose.connect(config.development.db, function(err) {
-    if (err) throw err;
+    if (err) {
+    	console.log('Cannot connect to db');
+    }
     console.log('Successfully connect to mongodb');
 });
 
