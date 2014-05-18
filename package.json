@@ -1,6 +1,6 @@
 {
     "name": "express-login",
-    "description": "Login using express 4.0 and angular js, boostrap and mongodb",
+    "description": "Login using express 3.x and angular js, boostrap and mongodb",
     "version": "0.0.1",
     "scripts": {
         "start": "node app.js"
@@ -12,6 +12,7 @@
         "passport": "0.2.0",
         "passport-local": "1.0.0",
         "connect-flash" : "~0.1.1",     
-        "bcrypt-nodejs" : "latest"
+        "bcrypt-nodejs" : "latest",
+        "passport-facebook": "latest"
     }
 }
